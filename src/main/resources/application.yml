@@ -1,1 +1,26 @@
-spring.application.name=config-server
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ByteB00k/Bytebook-config-repo
+          default-label: main
+          clone-on-start: true
+          force-pull: true
+          timeout: 10
+          search-paths:
+            - 'configuration/{application}'
+            - 'global'
+encrypt:
+  key: ${ENCRYPT_KEY}
+server:
+  port: 8882
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
