@@ -21,4 +21,4 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 COPY --from=builder /app/build/libs/app.jar app.jar
 EXPOSE 8882
-ENTRYPOINT ["sh", "-c", "export ENCRYPT_KEY=$(cat /run/secrets/encrypt_key) && java -jar app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
